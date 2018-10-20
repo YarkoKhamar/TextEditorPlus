@@ -16,10 +16,13 @@ namespace TextEditorPlus
     public partial class TextEditorPlus : Form
     {
         private int TabCount = 0;
+
         public TextEditorPlus()
         {
             InitializeComponent();   
         }
+
+
         #region Methods
         #region Tabs
         private void AddTab()
@@ -145,7 +148,10 @@ namespace TextEditorPlus
 
             foreach (FontFamily font in InsFonts.Families)
             {
-                toolStripComboBox1.Items.Add(font.Name);
+                if(font.Name != "")
+                {
+                    toolStripComboBox1.Items.Add(font.Name);
+                }
             }
 
             toolStripComboBox1.SelectedIndex = 0;
@@ -161,14 +167,44 @@ namespace TextEditorPlus
         }
         #endregion
         #region ToolStripUpButtons
+
+        private FontStyle GetCurrentFontStyle(FontStyle style)
+        {
+            FontStyle font = FontStyle.Regular;
+
+            if(GetCurrentDocument.SelectionFont.Bold && style != FontStyle.Bold)
+            {
+                font = font | FontStyle.Bold;
+            }
+
+            if (GetCurrentDocument.SelectionFont.Italic && style != FontStyle.Italic)
+            {
+                font = font | FontStyle.Italic;
+            }
+
+            if (GetCurrentDocument.SelectionFont.Strikeout && style != FontStyle.Strikeout)
+            {
+                font = font | FontStyle.Strikeout;
+            }
+
+            if (GetCurrentDocument.SelectionFont.Underline && style != FontStyle.Underline)
+            {
+                font = font | FontStyle.Underline;
+            }
+
+            return font;
+        }
+
         private void BoldFont()
         {
+            FontStyle font = GetCurrentFontStyle(FontStyle.Bold);
+
             Font boldFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                      GetCurrentDocument.SelectionFont.SizeInPoints, 
                                      GetCurrentDocument.SelectionFont.Style|FontStyle.Bold);
             Font regFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                      GetCurrentDocument.SelectionFont.SizeInPoints,
-                                     FontStyle.Regular);
+                                     font);
             if(GetCurrentDocument.SelectionFont.Bold)
             {
                 GetCurrentDocument.SelectionFont = regFont;
@@ -180,12 +216,14 @@ namespace TextEditorPlus
         }
         private void ItalicFont()
         {
+            FontStyle font = GetCurrentFontStyle(FontStyle.Italic);
+
             Font italicFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                     GetCurrentDocument.SelectionFont.SizeInPoints,
                                     GetCurrentDocument.SelectionFont.Style | FontStyle.Italic);
             Font regFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                      GetCurrentDocument.SelectionFont.SizeInPoints,
-                                     FontStyle.Regular);
+                                     font);
             if (GetCurrentDocument.SelectionFont.Italic)
             {
                 GetCurrentDocument.SelectionFont = regFont;
@@ -197,12 +235,14 @@ namespace TextEditorPlus
         }
         private void UnderlinedFont()
         {
+            FontStyle font = GetCurrentFontStyle(FontStyle.Underline);
+
             Font underlinedFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                     GetCurrentDocument.SelectionFont.SizeInPoints,
                                     GetCurrentDocument.SelectionFont.Style | FontStyle.Underline);
             Font regFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                      GetCurrentDocument.SelectionFont.SizeInPoints,
-                                     FontStyle.Regular);
+                                     font);
             if (GetCurrentDocument.SelectionFont.Underline)
             {
                 GetCurrentDocument.SelectionFont = regFont;
@@ -214,12 +254,14 @@ namespace TextEditorPlus
         }
         private void StrikeoutFont()
         {
+            FontStyle font = GetCurrentFontStyle(FontStyle.Strikeout);
+
             Font strikedoutFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                     GetCurrentDocument.SelectionFont.SizeInPoints,
                                     GetCurrentDocument.SelectionFont.Style | FontStyle.Strikeout);
             Font regFont = new Font(GetCurrentDocument.SelectionFont.FontFamily,
                                      GetCurrentDocument.SelectionFont.SizeInPoints,
-                                     FontStyle.Regular);
+                                     font);
             if (GetCurrentDocument.SelectionFont.Strikeout)
             {
                 GetCurrentDocument.SelectionFont = regFont;
@@ -432,6 +474,7 @@ namespace TextEditorPlus
         }
         #endregion
         #endregion
+        
         #region Properties
         public string GetSearchText
         {
@@ -442,7 +485,21 @@ namespace TextEditorPlus
             get { return (RichTextBox)tabControl1.SelectedTab.Controls["Body"]; }
         }
         #endregion
+        
         #region Events
+
+        private void ChangeElementCheckedState(ToolStripButton button)
+        {
+            if(button.Checked == true)
+            {
+                button.Checked = false;
+            }
+            else
+            {
+                button.Checked = true;
+            }
+        }
+
         private void TextEditorPlus_Load(object sender, EventArgs e)
         {
             AddTab();
@@ -614,21 +671,25 @@ namespace TextEditorPlus
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             BoldFont();
+            ChangeElementCheckedState(toolStripButton1);
         }
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             ItalicFont();
+            ChangeElementCheckedState(toolStripButton2);
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             UnderlinedFont();
+            ChangeElementCheckedState(toolStripButton3);
         }
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
             StrikeoutFont();
+            ChangeElementCheckedState(toolStripButton4);
         }
 
         private void toolStripButton5_Click(object sender, EventArgs e)
@@ -669,16 +730,28 @@ namespace TextEditorPlus
         private void toolStripButton10_Click(object sender, EventArgs e)
         {
             GetCurrentDocument.SelectionAlignment = HorizontalAlignment.Left;
+
+            ChangeElementCheckedState(toolStripButton10);
+            toolStripButton11.Checked = false;
+            toolStripButton12.Checked = false;
         }
 
         private void toolStripButton11_Click(object sender, EventArgs e)
         {
             GetCurrentDocument.SelectionAlignment = HorizontalAlignment.Center;
+
+            ChangeElementCheckedState(toolStripButton11);
+            toolStripButton10.Checked = false;
+            toolStripButton12.Checked = false;
         }
 
         private void toolStripButton12_Click(object sender, EventArgs e)
         {
             GetCurrentDocument.SelectionAlignment = HorizontalAlignment.Right;
+
+            ChangeElementCheckedState(toolStripButton12);
+            toolStripButton10.Checked = false;
+            toolStripButton11.Checked = false;
         }
 
         private void toolStripButton13_Click(object sender, EventArgs e)

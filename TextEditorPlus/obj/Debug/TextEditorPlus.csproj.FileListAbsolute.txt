@@ -8,3 +8,14 @@ c:\users\yaroslav khamar\documents\visual studio 2015\Projects\TextEditorPlus\Te
 c:\users\yaroslav khamar\documents\visual studio 2015\Projects\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.pdb
 C:\Users\Yaroslav Khamar\documents\visual studio 2015\Projects\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.findReplaceForm.resources
 C:\Users\Yaroslav Khamar\documents\visual studio 2015\Projects\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.Help.resources
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\bin\Debug\TextEditorPlus.exe
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\bin\Debug\TextEditorPlus.pdb
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.csprojAssemblyReference.cache
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.findReplaceForm.resources
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.Help.resources
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.TextEditorPlus.resources
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.Properties.Resources.resources
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.csproj.GenerateResource.cache
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.csproj.CoreCompileInputs.cache
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.exe
+C:\Users\Денис сын Олега\Documents\GitHub\TextEditorPlus\TextEditorPlus\obj\Debug\TextEditorPlus.pdb
